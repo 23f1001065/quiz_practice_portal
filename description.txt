@@ -1,0 +1,34 @@
+A multi-user app for examPreparation site where we have multiple courses to prepare for.
+Each Courses have several topic so that we can go for topic wise preparation.
+Application will have two role 
+    1.Admin - Who works as admin of the WebApp
+    2.Users - Consumer of the Application
+Application will have different storage object
+    1.User ---- For storing different user information
+    2.Admin ---- For storing admin information like logintime record of what is doing 
+    3.Subject ---- For field of study in which users wishes to give Quiz.It will store information related to subject.
+    4.Chapter ---- For storing information related to different chapter of a subject.User can prepare for specific topic of a subject.
+    5.Quiz ---- A particular preparation that users is doing.
+    6.Questions --- Every Quiz will have a set of questions cretated by admin.
+    7.Scores ---- storing quiz score and details of quiz attempt.
+    8.Role ---- for storing different role and description.
+    9.UserDetail ---- for all details of the users.
+        ( 
+            The User table and UserDetail table is different with common attribute userId that connect this two table.
+            User table only contain the login information for the users.
+            UserDetail table contain other information of the users.
+        )
+WHAT ADMIN CAN DO ----
+    1.Admin aill automatically added to app while new database cretated.( No Registration required )
+    2.Only one admin to this application.
+    3.will manage all other users.
+    4.will create new subject.
+    5.will add various chapter under a subject.
+    6.will add quiz question under a chapter.
+    
+WHAT USER CAN DO ----
+    1.User can register and then login .
+    2.He/She/Tgen can chose the available subjects and chapters from it & start Quiz and view Quiz score.
+    
+
+    
