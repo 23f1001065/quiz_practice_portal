@@ -1,0 +1,60 @@
+.button {
+
+    border-radius: 10px;
+    background-color: blueviolet;
+    color: white;
+    text-decoration: none;
+    padding: 0.2cm;
+    text-align: center;
+}
+
+.top {
+    height: 15%;
+}
+
+.body {
+    background-color: rgb(203, 160, 243);
+    padding: 2%;
+}
+
+.top-part {
+    height: 10vh;
+    width: 100%;
+}
+
+.bottom-part {
+    height: 89vh;
+    width: 100%;
+}
+
+hr {
+    margin: 0px 0px 0px 0px;
+}
+
+.description-heading {
+    color: blueviolet;
+}
+
+.button-block {
+    height: 1.4cm;
+    width: 5.6cm;
+    text-align: center;
+    cursor: pointer;
+    border-style: solid;
+    border-color: blueviolet;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.button-block:hover {
+    border-style: dashed;
+    font-style: normal;
+    font-size: large;
+}
+
+.LR {
+    text-decoration: none;
+    color: blueviolet;
+}

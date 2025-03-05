@@ -1,0 +1,28 @@
+.admin-left-col {
+    color: rgb(226, 221, 221);
+    background-image: radial-gradient(circle at top center, rgb(47, 141, 179), rgb(14, 10, 73) 50%);
+}
+
+.navigation-link {
+    text-decoration: none;
+    color: rgb(226, 221, 221);
+    cursor: pointer;
+}
+
+.navigation-link.active {
+    text-decoration: none;
+    color: rgb(238, 182, 62);
+    cursor: pointer;
+
+}
+
+
+
+
+.on-hover:hover {
+    border-right-style: solid;
+    border-right-color: rgb(238, 182, 62);
+    border-right-width: 5px;
+    color: rgb(238, 182, 62);
+    margin-left: 4px;
+}
