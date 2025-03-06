@@ -1,1 +1,4 @@
-# for database storage table
+#   Here all the database schema are defined
+
+
+
