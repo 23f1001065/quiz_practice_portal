@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_security import Security, SQLAlchemyUserDatastore, hash_password
 from backend.config import LocalDevelopmentConfig
-from backend.model import db, User, Role
+from backend.model import db, User, Role, Admin
 from datetime import datetime
 
 """ 
@@ -20,6 +20,7 @@ def BuildApp():
 
 app = BuildApp()
 from backend.userInterface import *
+from backend.auth import *
 
 if __name__ == "__main__":
     userdatastore = app.security.datastore
@@ -30,11 +31,13 @@ if __name__ == "__main__":
 
     if(not userdatastore.find_user(email='akash2001kumbhakar@gmail.com')):
         user = userdatastore.create_user(
-            id = 'QM0000180625',
+            id = 'AD0000180625',
             email = 'akash2001kumbhakar@gmail.com',
             password = hash_password('masterpass'),
             created_at = datetime.now().strftime("%d/%m/%Y, %I:%M:%S")
         )
         userdatastore.add_role_to_user(user,'admin')
+        admin = Admin(id=user.id,first_name='Akash',last_name='Kumbhakar',dob='18-06-2001',department='HR')
+        db.session.add(admin)
     db.session.commit()
     app.run(host='0.0.0.0', port=5000)

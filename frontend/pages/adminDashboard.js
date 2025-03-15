@@ -25,7 +25,7 @@ const adminDasboardPage = {
                         <router-link to="/admin_dashboard/summary" class="navigation-link" exact-active-class="active"><p class="on-hover"> <i class="bi bi-bar-chart-line icon-spacing"></i> Summary</p></router-link>
                     </div>
                     <div class="mx-4 mt-5 pt-5">
-                        <p class="navigation-link on-hover"><i class="bi bi-box-arrow-left icon-spacing"></i> Logout</p>
+                        <p class="navigation-link on-hover"  @click="logout"><i class="bi bi-box-arrow-left icon-spacing"></i> Logout</p>
                     </div>
                 </div>
                 <div class="col-sm-10 h-100 overflow-auto">
@@ -33,7 +33,17 @@ const adminDasboardPage = {
                 </div>
             </div>
         </div>
-    `
+    `,
+    methods: {
+        logout() {
+            localStorage.removeItem("isLoggedin")
+            localStorage.removeItem("id")
+            localStorage.removeItem("authToken")
+            localStorage.removeItem("role")
+
+            this.$router.push('/login')
+        }
+    }
 }
 
 

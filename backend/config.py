@@ -13,7 +13,7 @@ class LocalDevelopmentConfig(Config):
     SECRET_KEY = 'super_secret_key_for_now'
     SECURITY_PASSWORD_SALT = 'some_salt_for_now'
     SECURITY_PASSWORD_HASH = 'bcrypt'
-
+    WTF_CSRF_ENABLED = False
 
 class ProductionDevelopmentConfig(Config):
     DEBUG = False

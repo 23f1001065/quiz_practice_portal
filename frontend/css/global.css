@@ -8,3 +8,8 @@
 i {
     margin-right: 5px;
 }
+
+.form-control::placeholder {
+    color: rgb(202, 201, 201);
+    font-style: italic;
+}
