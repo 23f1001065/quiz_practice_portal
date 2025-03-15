@@ -97,7 +97,7 @@ const routes = [
     }
 ]
 
-const router = new Router({
+const router = new VueRouter({
     routes
 })
 
