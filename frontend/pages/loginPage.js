@@ -48,7 +48,7 @@ const Login = {
                 )
                 const data = await response.json()
                 if (response.ok) {
-                    localStorage.setItem("isLoggedin", true)
+                    localStorage.setItem("isLoggedIn", true)
                     localStorage.setItem("id", data.id)
                     localStorage.setItem("authToken", data.auth_token)
                     localStorage.setItem("role", data.role)
@@ -59,7 +59,8 @@ const Login = {
                         this.$router.push('/student_dashboard')
                     }
                     else {
-                        /**Go to Void space */
+                        alert('Not authorized');
+                        this.$router.push('/login');
                     }
                 }
                 else {

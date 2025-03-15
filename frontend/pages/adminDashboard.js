@@ -3,7 +3,7 @@ const adminDasboardPage = {
     template: `
         <div class="container-fluid vh-100">
             <div class="row h-100">
-                <div class="col-sm-2 h-100 admin-left-col">
+                <div class="col-sm-2 h-100 admin-left-col overflow-auto">
                     <div class="d-flex justify-content-center m-2">
                         <h3>Admin</h3>
                     </div>
@@ -36,7 +36,7 @@ const adminDasboardPage = {
     `,
     methods: {
         logout() {
-            localStorage.removeItem("isLoggedin")
+            localStorage.removeItem("isLoggedIn")
             localStorage.removeItem("id")
             localStorage.removeItem("authToken")
             localStorage.removeItem("role")

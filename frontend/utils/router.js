@@ -97,12 +97,12 @@ const routes = [
     }
 ]
 
-const router = new VueRouter({
+const router = new Router({
     routes
 })
 
 router.beforeEach((to, from, next) => {
-    const isLoggedIn = localStorage.getItem('isLoggedin')
+    const isLoggedIn = localStorage.getItem('isLoggedIn')
     const userRole = localStorage.getItem('role')
     if (to.matched.some((record) => record.meta.requiresLogin)) {
         if (!isLoggedIn) {

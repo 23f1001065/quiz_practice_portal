@@ -1,4 +1,4 @@
-import Login from "./loginPage.js";
+
 const homePage = {
     /* public homepage for this platform */
     template: `
