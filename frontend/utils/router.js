@@ -1,5 +1,6 @@
 import homePage from "../pages/homePage.js";
 import Status from "../pages/registrationSuccess.js";
+import logoutStatus from "../pages/logoutSuccess.js";
 /** Component  For Login and Register  **/
 import Login from "../pages/loginPage.js";
 import Register from "../pages/registerPage.js";
@@ -47,7 +48,18 @@ const routes = [
             }
         }
     },
-
+    {
+        path: '/logout-successfull',
+        component: logoutStatus,
+        beforeEnter: (to, form, next) => {
+            if (sessionStorage.getItem("isLoggedOut")) {
+                next();
+            }
+            else {
+                next("/");
+            }
+        }
+    },
     {
         path: '/admin_dashboard',
         component: adminDasboardPage,
@@ -102,8 +114,14 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-    const isLoggedIn = localStorage.getItem('isLoggedIn')
-    const userRole = localStorage.getItem('role')
+    let isLoggedIn = false
+    let userRole = null
+    const user = JSON.parse(sessionStorage.getItem('user'))
+    if (user) {
+        isLoggedIn = user.isLoggedIn
+        userRole = user.role
+    }
+
     if (to.matched.some((record) => record.meta.requiresLogin)) {
         if (!isLoggedIn) {
             next('/login');

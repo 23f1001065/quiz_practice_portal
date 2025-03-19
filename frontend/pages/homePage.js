@@ -24,12 +24,16 @@ const homePage = {
                             Start your preparation now.
                         </p>
                         <div class="d-flex column-gap-3 mt-5">
-                            <div class="button-block">
-                                <router-link to='/login' class="LR">Login</router-link>
-                            </div>
-                            <div class="button-block">
-                                <router-link to='/register' class="LR">New User</router-link>
-                            </div>
+                            <router-link to='/login' class="LR">
+                                <div class="button-block">
+                                    Login
+                                </div>
+                            </router-link>
+                            <router-link to='/register' class="LR">
+                                <div class="button-block">
+                                    New User
+                                </div>
+                            </router-link>
                         </div>
                     </div>
                 </div>

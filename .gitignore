@@ -1,0 +1,6 @@
+#Ignore python cache files
+_pycache_
+*.pyc
+
+#ignore database files
+*.db

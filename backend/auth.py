@@ -22,7 +22,7 @@ def login():
         password = input_data.get('password')   
     except:
         return jsonify({
-            'MESSAGE' : 'ERROR while getting data from api request'
+            'MESSAGE' : 'ERROR while getting data'
         }), 400
 
     if not email or not password:
@@ -40,6 +40,7 @@ def login():
     if verify_password(password, user.password):
         role = user.roles[0].name
         output_auth_data = {
+            'isLoggedIn' : True,
             'id' : user.id,
             'email' : user.email,
             'role' : role,

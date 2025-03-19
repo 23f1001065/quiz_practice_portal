@@ -21,6 +21,7 @@ def BuildApp():
 app = BuildApp()
 from backend.userInterface import *
 from backend.auth import *
+from backend.getData import *
 
 if __name__ == "__main__":
     userdatastore = app.security.datastore

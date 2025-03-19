@@ -1,0 +1,75 @@
+const loginData = {
+    state: () => ({
+        isLoggedIn: false,
+        role: null,
+        auth_token: null,
+        user_id: null,
+    }),
+    mutations: {
+        set_user(state) {
+            const user = JSON.parse(sessionStorage.getItem('user'))
+            if (user) {
+                state.isLoggedIn = true
+                state.role = user.role
+                state.auth_token = user.auth_token
+                state.user_id = user.id
+            }
+
+        },
+        unset_user(state) {
+            state.isLoggedIn = false
+            state.role = null
+            state.auth_token = null
+            state.user_id = null
+        }
+    }
+}
+
+const adminData = {
+    state: () => ({
+        full_name: null,
+        first_name: null,
+        mid_name: null,
+        last_name: null,
+        dob: null,
+        department: null
+    }),
+    mutations: {
+        set_admin(state) {
+            const admin = JSON.parse(sessionStorage.getItem('admin'))
+            if (admin) {
+                state.first_name = admin.first_name
+                state.mid_name = admin.mid_name
+                state.last_name = admin.last_name
+                state.dob = admin.dob
+                state.department = admin.department
+                if (admin.mid_name) {
+                    state.full_name = admin.first_name + ' ' + admin.mid_name + ' ' + admin.last_name
+                }
+                else {
+                    state.full_name = admin.first_name + ' ' + admin.last_name
+                }
+            }
+
+        },
+        unset_admin(state) {
+            state.first_name = null
+            state.mid_name = null
+            state.last_name = null
+            state.dob = null
+            state.department = null
+        }
+    }
+}
+
+
+const store = new Vuex.Store({
+    modules: {
+        loginData,
+        adminData
+    }
+})
+
+store.commit('set_user')
+store.commit('set_admin')
+export default store

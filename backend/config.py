@@ -14,6 +14,7 @@ class LocalDevelopmentConfig(Config):
     SECURITY_PASSWORD_SALT = 'some_salt_for_now'
     SECURITY_PASSWORD_HASH = 'bcrypt'
     WTF_CSRF_ENABLED = False
+    SECURITY_TOKEN_AUTHENTICATION_HEADER = 'Authorization'
 
 class ProductionDevelopmentConfig(Config):
     DEBUG = False

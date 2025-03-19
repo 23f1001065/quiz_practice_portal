@@ -8,7 +8,7 @@ const studentDasboardPage = {
                         <h3>Student</h3>
                     </div>
                     <div class="d-flex justify-content-center m-2">
-                        <img src="frontend/images/demoProfile.png" alt="Profile picture" class="profile-picture">
+                        <img src="" alt="Profile picture" class="profile-picture">
                     </div>
                     <div class="d-flex justify-content-center m-2">
                         <div>
@@ -22,7 +22,7 @@ const studentDasboardPage = {
                         <router-link to="/student_dashboard/progress" class="navigation-link"><p class="on-hover"> <i class="bi bi-trophy"></i> My Achievement</p></router-link>
                     </div>
                     <div class="mx-4 mt-5 pt-5">
-                        <p class="navigation-link on-hover"><i class="bi bi-box-arrow-left icon-spacing"></i> Logout</p>
+                        <p class="navigation-link on-hover" v-on:click="logout"><i class="bi bi-box-arrow-left icon-spacing"></i> Logout</p>
                     </div>
                 </div>
                 <div class="col-sm-10 h-100 overflow-auto">
@@ -31,7 +31,16 @@ const studentDasboardPage = {
             </div>
 
         </div>
-    `
+    `,
+    methods: {
+        logout() {
+            sessionStorage.setItem('isLoggedOut', true)
+            sessionStorage.removeItem("user")
+            this.$store.commit('unset_user')
+            this.$router.push('/logout-successfull')
+
+        }
+    }
 }
 
 

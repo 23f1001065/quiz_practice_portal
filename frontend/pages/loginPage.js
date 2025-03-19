@@ -48,10 +48,8 @@ const Login = {
                 )
                 const data = await response.json()
                 if (response.ok) {
-                    localStorage.setItem("isLoggedIn", true)
-                    localStorage.setItem("id", data.id)
-                    localStorage.setItem("authToken", data.auth_token)
-                    localStorage.setItem("role", data.role)
+                    sessionStorage.setItem("user", JSON.stringify(data))
+                    this.$store.commit('set_user')
                     if (data.role === 'admin') {
                         this.$router.push('/admin_dashboard')
                     }

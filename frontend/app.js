@@ -1,5 +1,5 @@
 import router from "./utils/router.js";
-
+import store from "./utils/storex.js";
 
 const app = new Vue({
     el: "#app",
@@ -8,5 +8,6 @@ const app = new Vue({
             <router-view></router-view>
         </div>
     `,
-    router
+    router,
+    store
 })

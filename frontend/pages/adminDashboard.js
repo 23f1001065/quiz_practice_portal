@@ -8,12 +8,12 @@ const adminDasboardPage = {
                         <h3>Admin</h3>
                     </div>
                     <div class="d-flex justify-content-center m-2">
-                        <img src="frontend/images/demoProfile.png" alt="Profile picture" class="profile-picture">
+                        <img src="" alt="Profile picture" class="profile-picture">
                     </div>
                     <div class="d-flex justify-content-center m-2">
                         <div>
-                            <p class="text-center">Akash Kumar Kumbhakar Patra Roy Choudhury</p>
-                            <p class="text-center">ADMIN0001</p>
+                            <p class="text-center">{{ name }}</p>
+                            <p class="text-center">{{ user_id }}</p>
                         </div>
                     </div>
                     <div class="m-4">
@@ -34,15 +34,50 @@ const adminDasboardPage = {
             </div>
         </div>
     `,
-    methods: {
-        logout() {
-            localStorage.removeItem("isLoggedIn")
-            localStorage.removeItem("id")
-            localStorage.removeItem("authToken")
-            localStorage.removeItem("role")
-
-            this.$router.push('/login')
+    data() {
+        return {
+            name: null,
+            user_id: this.$store.state.loginData.user_id
         }
+    },
+    methods: {
+        async getAdminInformation() {
+            const response = await fetch(
+                location.origin + '/api/admin-information',
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': this.$store.state.loginData.auth_token
+                    },
+                    body: JSON.stringify({
+                        'id': this.$store.state.loginData.user_id
+                    })
+
+                }
+            )
+            const admin = await response.json()
+            if (response.ok) {
+                /** store data to admin state */
+                sessionStorage.setItem('admin', JSON.stringify(admin))
+                this.$store.commit('set_admin')
+                this.name = this.$store.state.adminData.full_name
+            }
+            else {
+                console.error("Error getting admin data");
+            }
+        },
+        logout() {
+            sessionStorage.setItem('isLoggedOut', true)
+            sessionStorage.removeItem("user")
+            this.$store.commit('unset_user')
+            this.$store.commit('unset_admin')
+            this.$router.push('/logout-successfull')
+
+        }
+    },
+    created() {
+        this.getAdminInformation();
     }
 }
 
