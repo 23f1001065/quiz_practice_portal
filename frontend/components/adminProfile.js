@@ -1,9 +1,12 @@
 const adminProfile = {
     template: `
         <div class="m-5">
-            <p> Name : {{ name }} </p>
-            <p> Date of Birth : {{ dob }} </p>
-            <p> Department : {{ department }} </p>
+            <p>
+                <span class="text-primary fw-bold">Name</span> : {{ name }} <br>
+                <span class="text-primary fw-bold">Date of Birth</span> : {{ dob }} <br>
+                <span class="text-primary fw-bold">Department</span> : {{ department }}
+            </p>
+             
         </div>
     `,
     data() {

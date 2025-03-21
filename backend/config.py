@@ -14,7 +14,9 @@ class LocalDevelopmentConfig(Config):
     SECURITY_PASSWORD_SALT = 'some_salt_for_now'
     SECURITY_PASSWORD_HASH = 'bcrypt'
     WTF_CSRF_ENABLED = False
+    SECURITY_UNAUTHORIZED_VIEW = None
     SECURITY_TOKEN_AUTHENTICATION_HEADER = 'Authorization'
+    
 
 class ProductionDevelopmentConfig(Config):
     DEBUG = False
@@ -24,4 +26,5 @@ class ProductionDevelopmentConfig(Config):
     SECRET_KEY = secrets.token_urlsafe()
     SECURITY_PASSWORD_SALT = secrets.SystemRandom().getrandbits(128)
     SECURITY_PASSWORD_HASH = 'bcrypt'
-    pass
+    SECURITY_TOKEN_AUTHENTICATION_HEADER = 'Authorization'
+    

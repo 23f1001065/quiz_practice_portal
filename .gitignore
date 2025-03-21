@@ -1,5 +1,5 @@
 #Ignore python cache files
-_pycache_
+backend/__pycache__/
 *.pyc
 
 #ignore database files
