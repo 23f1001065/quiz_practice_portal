@@ -68,6 +68,7 @@ class Quiz(db.Model):
     id = db.Column(Integer, primary_key=True, autoincrement=True)
     title = db.Column(String, nullable=False)
     date_of_quiz = db.Column(String, nullable=False)
+    time = db.Column(String, nullable=False)
     duration = db.Column(Integer, nullable=False)
     description = db.Column(String)
     chapter_id = db.Column(Integer, db.ForeignKey('chapter.id', ondelete='CASCADE'), nullable=False)
@@ -83,6 +84,7 @@ class Question(db.Model):
     op3 = db.Column(String, nullable=False)
     op4 = db.Column(String, nullable=False)
     correct_op = db.Column(Integer, nullable=False)
+    point = db.Column(Integer,nullable=False)
     quiz_id = db.Column(Integer, db.ForeignKey('quiz.id', ondelete='CASCADE'), nullable=False)
 
 class Score(db.Model):

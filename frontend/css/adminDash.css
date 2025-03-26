@@ -28,7 +28,14 @@
 
 .subject:hover {
     border-bottom-style: solid;
+    background-color: rgb(218, 224, 159);
     border-bottom-color: blueviolet;
+    border: 0px 0px 4px 0px;
+    padding: 4px 4px 4px 4px;
+}
+
+.chapter:hover {
+    border-bottom-color: rgb(95, 226, 43);
     border: 0px 0px 4px 0px;
 }
 

@@ -18,3 +18,7 @@ i {
 * {
     scrollbar-width: thin;
 }
+
+select {
+    width: 6cm;
+}

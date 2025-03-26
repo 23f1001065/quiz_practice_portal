@@ -12,10 +12,12 @@ import studentDasboardPage from "../pages/studentDashboard.js";
 /** All Admin Child Components **/
 import adminProfile from "../components/adminProfile.js";
 import adminHome from "../components/adminHome.js";
-import adminCreate from "../components/adminCreate.js";
+import createSubject from "../components/createSubject.js";
 import adminManage from "../components/adminManage.js";
 import adminSearch from "../components/adminSearch.js";
 import adminSummary from "../components/adminSummary.js";
+import cChap from "../components/createChapter.js";
+import quiz from "../components/createQuiz.js";
 
 /** All Student Child Components **/
 import studentHome from "../components/studentHome.js";
@@ -65,7 +67,7 @@ const routes = [
         component: adminDasboardPage,
         children: [
             {
-                path: '',
+                path: 'home',
                 component: adminHome
 
             },
@@ -75,8 +77,18 @@ const routes = [
 
             },
             {
-                path: 'create',
-                component: adminCreate
+                path: 'create/subject',
+                component: createSubject,
+
+            },
+            {
+                path: 'create/chapter',
+                component: cChap,
+
+            },
+            {
+                path: 'create/quiz',
+                component: quiz,
 
             },
             {
@@ -101,7 +113,7 @@ const routes = [
         component: studentDasboardPage,
         children: [
             {
-                path: '',
+                path: 'home',
                 component: studentHome
             }
         ],

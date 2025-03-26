@@ -17,12 +17,12 @@ const adminDasboardPage = {
                         </div>
                     </div>
                     <div class="m-4">
-                        <router-link to="/admin_dashboard" class="navigation-link" exact-active-class="active"><p class="on-hover"> <i class="bi bi-house-door icon-spacing"></i> Home</p></router-link>
-                        <router-link to="/admin_dashboard/profile" class="navigation-link" exact-active-class="active"><p class="on-hover"> <i class="bi bi-person-lines-fill icon-spacing"></i> Profile</p></router-link>
-                        <router-link to="/admin_dashboard/create" class="navigation-link" exact-active-class="active"><p class="on-hover"> <i class="bi bi-plus-square"></i> Create</p></router-link>
-                        <router-link to="/admin_dashboard/manage" class="navigation-link" exact-active-class="active"><p class="on-hover"> <i class="bi bi-pencil-square"></i> Manage</p></router-link>
-                        <router-link to="/admin_dashboard/search" class="navigation-link" exact-active-class="active"><p class="on-hover"> <i class="bi bi-search icon-spacing"></i> Search</p></router-link>
-                        <router-link to="/admin_dashboard/summary" class="navigation-link" exact-active-class="active"><p class="on-hover"> <i class="bi bi-bar-chart-line icon-spacing"></i> Summary</p></router-link>
+                        <router-link to="/admin_dashboard/home" class="navigation-link" active-class="active"><p class="on-hover"> <i class="bi bi-house-door icon-spacing"></i> Home</p></router-link>
+                        <router-link to="/admin_dashboard/profile" class="navigation-link" active-class="active"><p class="on-hover"> <i class="bi bi-person-lines-fill icon-spacing"></i> Profile</p></router-link>
+                        <router-link to="/admin_dashboard/create/subject" class="navigation-link" :class="{ active: $route.path.startsWith('/admin_dashboard/create') }"><p class="on-hover"> <i class="bi bi-plus-square"></i> Create</p></router-link>
+                        <router-link to="/admin_dashboard/manage" class="navigation-link" :class="{ active: $route.path.startsWith('/admin_dashboard/manage') }"><p class="on-hover"> <i class="bi bi-pencil-square"></i> Manage</p></router-link>
+                        <router-link to="/admin_dashboard/search" class="navigation-link" active-class="active"><p class="on-hover"> <i class="bi bi-search icon-spacing"></i> Search</p></router-link>
+                        <router-link to="/admin_dashboard/summary" class="navigation-link" active-class="active"><p class="on-hover"> <i class="bi bi-bar-chart-line icon-spacing"></i> Summary</p></router-link>
                     </div>
                     <div class="mx-4 mt-5 pt-5">
                         <p class="navigation-link on-hover"  @click="logout"><i class="bi bi-box-arrow-left icon-spacing"></i> Logout</p>
@@ -37,7 +37,13 @@ const adminDasboardPage = {
     data() {
         return {
             name: null,
-            user_id: this.$store.state.loginData.user_id
+            user_id: null
+        }
+    },
+    created() {
+        this.getAdminInformation();
+        if (this.$route.path === "/admin_dashboard") {
+            this.$router.push("/admin_dashboard/home");
         }
     },
     methods: {
@@ -62,6 +68,7 @@ const adminDasboardPage = {
                 sessionStorage.setItem('admin', JSON.stringify(admin))
                 this.$store.commit('set_admin')
                 this.name = this.$store.state.adminData.full_name
+                this.user_id = this.$store.state.loginData.user_id
             }
             else {
                 console.error("Error getting admin data");
@@ -70,14 +77,12 @@ const adminDasboardPage = {
         logout() {
             sessionStorage.setItem('isLoggedOut', true)
             sessionStorage.removeItem("user")
+            sessionStorage.removeItem("admin")
             this.$store.commit('unset_user')
             this.$store.commit('unset_admin')
             this.$router.push('/logout-successfull')
 
         }
-    },
-    created() {
-        this.getAdminInformation();
     }
 }
 

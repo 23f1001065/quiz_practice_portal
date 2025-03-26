@@ -25,7 +25,10 @@ app = BuildApp()
 
 from backend.userInterface import *
 from backend.auth import *
-from backend.getData import *
+from backend.getUserData import *
+from backend.apiForSubject import *
+from backend.apiForChapter import *
+from backend.apiForQuiz import *
 from backend.resource import *
 
 if __name__ == "__main__":

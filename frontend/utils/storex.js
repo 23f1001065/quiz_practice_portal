@@ -22,6 +22,9 @@ const loginData = {
             state.auth_token = null
             state.user_id = null
         }
+    },
+    actions: {
+
     }
 }
 
@@ -32,7 +35,9 @@ const adminData = {
         mid_name: null,
         last_name: null,
         dob: null,
-        department: null
+        department: null,
+
+
     }),
     mutations: {
         set_admin(state) {
@@ -56,9 +61,15 @@ const adminData = {
             state.first_name = null
             state.mid_name = null
             state.last_name = null
+            state.full_name = null
             state.dob = null
             state.department = null
         }
+
+    },
+    actions: {
+
+
     }
 }
 
@@ -70,6 +81,10 @@ const store = new Vuex.Store({
     }
 })
 
+/**If browser reload happen then 
+ * these data will come from session storage
+ */
 store.commit('set_user')
 store.commit('set_admin')
+
 export default store

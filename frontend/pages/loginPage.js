@@ -51,10 +51,10 @@ const Login = {
                     sessionStorage.setItem("user", JSON.stringify(data))
                     this.$store.commit('set_user')
                     if (data.role === 'admin') {
-                        this.$router.push('/admin_dashboard')
+                        this.$router.push('/admin_dashboard/home')
                     }
                     else if (data.role === 'student') {
-                        this.$router.push('/student_dashboard')
+                        this.$router.push('/student_dashboard/home')
                     }
                     else {
                         alert('Not authorized');
