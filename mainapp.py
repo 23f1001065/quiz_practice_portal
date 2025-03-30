@@ -30,6 +30,7 @@ from backend.apiForChapter import *
 from backend.apiForQuiz import *
 from backend.resource import *
 from backend.apiForExam import *
+from backend.adminSearchApi import *
 
 if __name__ == "__main__":
     userdatastore = app.security.datastore
