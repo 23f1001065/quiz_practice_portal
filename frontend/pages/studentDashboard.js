@@ -20,7 +20,6 @@ const studentDasboardPage = {
                         <router-link to="/student_dashboard/home" class="navigation-link" active-class="active"><p class="on-hover"> <i class="bi bi-house-door icon-spacing"></i> Home</p></router-link>
                         <router-link to="/student_dashboard/profile" class="navigation-link" active-class="active"><p class="on-hover"> <i class="bi bi-person-lines-fill icon-spacing"></i> Profile</p></router-link>
                         <router-link to="/student_dashboard/my-quiz-attempt" class="navigation-link" active-class="active"><p class="on-hover"> <i class="bi bi-book"></i> My Quizzes</p></router-link>
-                        <router-link to="/student_dashboard/progress" class="navigation-link" active-class="active"><p class="on-hover"> <i class="bi bi-trophy"></i> My Achievement</p></router-link>
                     </div>
                     <div class="mx-4 mt-5 pt-5">
                         <p class="navigation-link on-hover" v-on:click="logout"><i class="bi bi-box-arrow-left icon-spacing"></i> Logout</p>
