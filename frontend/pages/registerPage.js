@@ -94,7 +94,7 @@ const Register = {
                     this.$router.push('/registration-successfull')
                 }
                 else {
-                    console.log(data.MESSAGE)
+                    alert(data.MESSAGE)
                 }
             }
             else {

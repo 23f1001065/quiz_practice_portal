@@ -1,19 +1,22 @@
 const attemptedQuiz = {
     template: `
-        <div class="p-2">
-            <div class="p-3">
+        <div class="p-2 h-100">
+            <div class="p-3" style="height:10%">
                 <h3 class="text-danger fst-italic">All attempted quizzes</h3>
             </div>
-            <hr class="text-danger" style="height:2px">uban
-            <ol v-for="(attempt,index) in all_quiz_attempts">
-                <li>
-                    <span>Quiz ID : {{attempt.quiz_id}}</span><br>
-                    <span>Attempt No : {{attempt.attempt_number}}</span><br>
-                    <span>Score : {{attempt.score}}</span><br>
-                    <span>Time taken : {{attempt.time_taken}}</span><br>
-                    <span>Time Of Attempt : {{attempt.timestamp}}</span>
-                </li>
-            </ol>
+            <hr class="text-danger" style="height:2px">
+            <div style="height:85%" class="overflow-auto">
+                <ol>
+                    <li v-for="(attempt,index) in all_quiz_attempts" class="p-3">
+                        <span class="text-success fw-bold">Quiz ID : </span>{{attempt.quiz_id}}<br>
+                        <span class="text-success fw-bold">Attempt No : </span>{{attempt.attempt_number}}<br>
+                        <span class="text-success fw-bold">Your Score : </span>{{attempt.score}}<br>
+                        <span class="text-success fw-bold">Time taken : </span>{{attempt.time_taken}}<br>
+                        <span class="text-success fw-bold">Time Of Attempt : </span>{{attempt.timestamp}}
+                        <hr>
+                    </li>
+                </ol>
+            <div>
 
         </div>
     `,

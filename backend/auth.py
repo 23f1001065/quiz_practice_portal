@@ -81,7 +81,7 @@ def register():
     user = datastore.find_user(email=email)
     if user:
         return jsonify({
-            'MESSAGE' : 'User Exists',
+            'MESSAGE' : 'User Exists with this email',
             'CODE': 404
         }), 404
     try:

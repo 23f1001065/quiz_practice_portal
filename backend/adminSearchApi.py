@@ -52,8 +52,6 @@ def searchSubject():
                         "chapter_name" : chapter.name,
                     }
                     result.append(each_quiz)
-                
-            pass
     except Exception as e:
         print(e)
         return jsonify({
@@ -62,3 +60,75 @@ def searchSubject():
     else:
         return jsonify(result)
     
+@app.route('/api/all-count',methods=['GET'])
+@auth_required('token')
+@roles_accepted('admin')
+def summaryAll():
+    try:
+        student_count = Student.query.count()
+        quiz_count = Quiz.query.count()
+        chapter_count = Quiz.query.count()
+        subject_count = Subject.query.count()
+        question_count = Question.query.count()
+
+        all_subjects = Subject.query.all()
+    except Exception as e:
+        print(e)
+        return jsonify({
+            "MESSAGE" : "DB_ERROR"
+        }),500
+    else:
+        all_stat = [
+            student_count,
+            quiz_count,
+            chapter_count,
+            subject_count,
+            question_count
+        ]
+        sub_names = []
+        chap_count = []
+        chap_name = []
+        quiz_count = []
+        for sub in all_subjects:
+            sub_names.append(sub.name)
+            chap_count.append(len(sub.chapters))
+        print()
+
+        return jsonify({
+            'all_stat' : all_stat,
+            'subject_list' : sub_names,
+            'chapter_count': chap_count
+        })
+    
+
+@app.route('/api/chapter-wise-question-count',methods=['POST'])
+@auth_required('token')
+@roles_accepted('admin')
+def quizCount():
+    try:
+        subject_name = request.get_json().get("subject_name")
+        print(subject_name)
+    except Exception as e:
+        print(e)
+        return jsonify({
+            "MESSAGE" : "DB_ERROR"
+        }),500
+    else:
+        try:
+            print(subject_name)
+            sub = Subject.query.filter_by(name=subject_name).first()
+        except Exception as e:
+            print(e)
+            return jsonify({
+                "MESSAGE" : "DB_ERROR"
+            }),500
+        else:
+            chap_name = []
+            quiz_count = []
+            for chap in sub.chapters:
+                chap_name.append(chap.name)
+                quiz_count.append(len(chap.quizzes))
+        return jsonify({
+            'chapter_list' : chap_name,
+            'quiz_count': quiz_count
+        })    

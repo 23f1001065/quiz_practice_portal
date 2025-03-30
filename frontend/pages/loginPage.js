@@ -63,7 +63,7 @@ const Login = {
                 }
                 else {
                     /**go for alternate */
-                    console.error('Error fetching data');
+                    alert(data.MESSAGE);
                     console.error(data.CODE);
                 }
             }
