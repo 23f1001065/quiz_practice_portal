@@ -14,7 +14,6 @@ def BuildApp():
     app = Flask(__name__,template_folder='frontend',static_folder='frontend')
     app.config.from_object(LocalDevelopmentConfig)
     db.init_app(app)  
-
     user_datastore = SQLAlchemyUserDatastore(db, User, Role)
     app.security = Security(app=app, datastore=user_datastore, register_blueprint=False)
     
@@ -30,6 +29,7 @@ from backend.apiForSubject import *
 from backend.apiForChapter import *
 from backend.apiForQuiz import *
 from backend.resource import *
+from backend.apiForExam import *
 
 if __name__ == "__main__":
     userdatastore = app.security.datastore

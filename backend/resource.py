@@ -1,12 +1,12 @@
 from flask import current_app as app, request, Response, jsonify
 from flask_security import verify_password, hash_password, current_user, auth_required, roles_accepted
-from .model import db, Subject, Chapter, Quiz, Question
+from .model import db, Subject, Chapter, Quiz, Question, User
 import json
 
 
 @app.route('/api/get-subject-id-name', methods=['GET','POST'])
 @auth_required('token')
-@roles_accepted('admin')
+@roles_accepted('admin','student')
 def getSubjectIdNames():
     try:
         subjects = Subject.query.all()
@@ -22,7 +22,7 @@ def getSubjectIdNames():
 
 @app.route('/api/get-chapter-id-name', methods=['PUT'])
 @auth_required('token')
-@roles_accepted('admin')
+@roles_accepted('admin','student')
 def getChapterIdNames():
     try:
         data = request.get_json()
@@ -96,3 +96,35 @@ def getQuiz():
         }), 500
     else:
         return jsonify(json_of_quiz), 200
+    
+
+@app.route('/api/check-valid-user-and-quiz',methods=["POST"])
+@auth_required('token')
+def checkValid():
+    try:
+        input = request.get_json()
+        quiz_id = int(input.get("quiz_id"))
+        user_id = input.get("user_id")
+    except Exception as e:
+        print(e)
+        return jsonify({
+            "e":"error"
+        }),400
+    else:
+        try:
+            user = User.query.filter_by(id=user_id).first()
+            quiz = Quiz.query.filter_by(id=quiz_id).first()
+        except Exception as e:
+            return jsonify({
+                "STATUS" : "DB_ERROR"
+            }),500
+        else:
+            if(user and quiz):
+                return jsonify({
+                    "STATUS" : "OK"
+                }),200
+            else:
+                return jsonify({
+                    "STATUS" : "NOT_FOUND"
+                }),404
+        

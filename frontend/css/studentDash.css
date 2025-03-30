@@ -3,3 +3,26 @@
     background-image: radial-gradient(circle at top center, rgb(189, 61, 61), rgb(37, 3, 3) 40%);
 
 }
+
+table th {
+    position: sticky;
+    top: 0;
+    background-color: rgb(205, 155, 252);
+    z-index: 2;
+}
+
+.message-box {
+    background: rgba(255, 255, 255, 1.0);
+    padding: 5px 5px 5px 5px;
+    top: 25%;
+    left: 35%;
+    width: 30%;
+    height: 50%;
+    border: 30px 2px 30px 2px;
+    border-radius: 5px;
+    border-top-style: solid;
+    border-top-color: blueviolet;
+    border-bottom-style: solid;
+    border-bottom-color: blueviolet;
+
+}

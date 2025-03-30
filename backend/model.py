@@ -98,4 +98,6 @@ class Score(db.Model):
     attempt_number = db.Column(Integer, nullable=False)
     score = db.Column(Float, nullable=False)
     timestamp = db.Column(String, nullable=False)
+    status = db.Column(String, nullable=False)
+    time_taken = db.Column(String, nullable=False)
 

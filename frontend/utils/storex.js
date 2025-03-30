@@ -67,17 +67,61 @@ const adminData = {
         }
 
     },
-    actions: {
+    actions: {}
+}
 
+const studentData = {
+    state: () => ({
+        full_name: null,
+        first_name: null,
+        mid_name: null,
+        last_name: null,
+        dob: null,
+    }),
+    mutations: {
+        set_student(state) {
+            const student = JSON.parse(sessionStorage.getItem('student'))
+            if (student) {
+                state.first_name = student.first_name
+                state.mid_name = student.mid_name
+                state.last_name = student.last_name
+                state.dob = student.dob
+                if (student.mid_name) {
+                    state.full_name = student.first_name + ' ' + student.mid_name + ' ' + student.last_name
+                }
+                else {
+                    state.full_name = student.first_name + ' ' + student.last_name
+                }
+            }
 
+        },
+        unset_student(state) {
+            state.first_name = null
+            state.mid_name = null
+            state.last_name = null
+            state.full_name = null
+            state.dob = null
+        }
     }
 }
 
+const globalCssData = {
+    state: () => ({
+        is_clicked: false
+    }),
+    mutations: {
+        set_it(state, { flag }) {
+            state.is_clicked = flag
+        }
+    }
+}
 
 const store = new Vuex.Store({
     modules: {
         loginData,
-        adminData
+        adminData,
+        studentData,
+        globalCssData
     }
 })
 
@@ -86,5 +130,6 @@ const store = new Vuex.Store({
  */
 store.commit('set_user')
 store.commit('set_admin')
+store.commit('set_student')
 
 export default store

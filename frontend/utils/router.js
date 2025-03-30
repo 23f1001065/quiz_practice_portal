@@ -1,6 +1,7 @@
 import homePage from "../pages/homePage.js";
 import Status from "../pages/registrationSuccess.js";
 import logoutStatus from "../pages/logoutSuccess.js";
+import error from "../pages/errorPage.js";
 /** Component  For Login and Register  **/
 import Login from "../pages/loginPage.js";
 import Register from "../pages/registerPage.js";
@@ -21,6 +22,10 @@ import quiz from "../components/createQuiz.js";
 
 /** All Student Child Components **/
 import studentHome from "../components/studentHome.js";
+import studentProfile from "../components/studentProfile.js";
+import attemptedQuiz from "../components/attemptedQuiz.js";
+import quizPage from "../pages/liveQuizPage.js";
+import result from "../pages/quizResult.js";
 
 
 const routes = [
@@ -64,6 +69,7 @@ const routes = [
     },
     {
         path: '/admin_dashboard',
+        redirect: '/admin_dashboard/home',
         component: adminDasboardPage,
         children: [
             {
@@ -110,14 +116,44 @@ const routes = [
     },
     {
         path: '/student_dashboard',
+        redirect: '/student_dashboard/home',
         component: studentDasboardPage,
         children: [
             {
                 path: 'home',
                 component: studentHome
+            },
+            {
+                path: 'profile',
+                component: studentProfile
+            },
+            {
+                path: 'my-quiz-attempt',
+                component: attemptedQuiz
             }
         ],
         meta: { requiresLogin: true, role: "student" },
+    },
+    {
+        path: '/live-quiz',
+        component: quizPage,
+        meta: { requiresLogin: true, role: "student" }
+    },
+    {
+        path: '/404',
+        component: error
+    },
+    {
+        path: '/quiz-result',
+        component: result,
+        beforeEnter: (to, form, next) => {
+            if (sessionStorage.getItem("isGotResult")) {
+                next();
+            }
+            else {
+                next("/student_dashboard");
+            }
+        }
     }
 ]
 
@@ -133,7 +169,6 @@ router.beforeEach((to, from, next) => {
         isLoggedIn = user.isLoggedIn
         userRole = user.role
     }
-
     if (to.matched.some((record) => record.meta.requiresLogin)) {
         if (!isLoggedIn) {
             next('/login');

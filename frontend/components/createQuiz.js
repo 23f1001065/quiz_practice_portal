@@ -83,7 +83,7 @@ const quiz = {
                             <label>Option 2</label> : <input type="text" v-model="op2"><br>
                             <label>Option 3</label> : <input type="text" v-model="op3"><br>
                             <label>Option 4</label> : <input type="text" v-model="op4"><br>
-                            <label>Correct Option</label> : <input type="text" v-model="cor_opt"><br>
+                            <label>Correct Option</label> : <input type="text" @keydown.space.prevent v-model="cor_opt"><br>
                             <label>point</label> : <input type="number" v-model="point">
                             <div class="d-flex justify-content-between my-3">
                                 <button type="submit" class="button">create</button>

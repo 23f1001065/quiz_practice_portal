@@ -249,3 +249,41 @@ def deleteQu():
         return jsonify({
             "MESSAGE" : "Question deleted successfully"
         })
+    
+
+@app.route('/api/get-all-quizzes-with-chapter-name',methods=['GET'])
+@auth_required('token')
+@roles_accepted('student')
+def getAllQ():
+    try:
+        chapters = Chapter.query.all()
+        
+        final_list = []
+        for chapter in chapters:
+            for quiz in chapter.quizzes:
+                no_of_question = 0
+                full_marks = 0
+                for question in quiz.questions:
+                    no_of_question += 1
+                    full_marks = full_marks + question.point
+                final_list.append(
+                    {
+                        "chapter_name" : chapter.name,
+                        "id" : quiz.id,
+                        "title" : quiz.title,
+                        "duration" : quiz.duration,
+                        "description" : quiz.description,
+                        "chapter_id" : quiz.chapter_id,
+                        "total_question" : no_of_question,
+                        "full_marks" : full_marks
+                    }
+                )
+    except Exception as e:
+        print(e)
+        return jsonify({
+            "MESSAGE" : "ERROR fetching chapters"
+        }), 400
+    
+    else:
+        return jsonify(final_list)
+    
