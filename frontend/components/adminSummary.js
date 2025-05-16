@@ -78,7 +78,7 @@ const adminSummary = {
                 ];
                 const chapSummary = document.getElementById('chapSummary').getContext('2d')
                 this.chart3 = new Chart(chapSummary, {
-                    type: 'doughnut',
+                    type: 'bar',
                     data: {
                         labels: this.chapter_list,
                         datasets: [{

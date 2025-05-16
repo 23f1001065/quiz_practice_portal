@@ -15,7 +15,7 @@ const Login = {
                 </form>
                 
                 <p class="text-secondary">
-                    if don't have any account please <router-link to='/register'>register</router-link>
+                    if don't have any account please <router-link to='/register'>register</router-link> 
                 </p>
             </div>
         </div>

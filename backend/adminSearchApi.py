@@ -49,7 +49,7 @@ def searchSubject():
                         "time" : quiz.time,
                         "duration" : quiz.duration,
                         "description" : quiz.description,
-                        "chapter_name" : chapter.name,
+                        "chapter_name" : chapter.name
                     }
                     result.append(each_quiz)
     except Exception as e:
@@ -67,7 +67,7 @@ def summaryAll():
     try:
         student_count = Student.query.count()
         quiz_count = Quiz.query.count()
-        chapter_count = Quiz.query.count()
+        chapter_count = Chapter.query.count()
         subject_count = Subject.query.count()
         question_count = Question.query.count()
 

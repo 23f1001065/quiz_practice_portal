@@ -16,7 +16,7 @@ const attemptedQuiz = {
                         <hr>
                     </li>
                 </ol>
-            <div>
+            </div>
 
         </div>
     `,
